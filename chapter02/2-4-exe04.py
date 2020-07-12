@@ -1,25 +1,18 @@
-# takes 10 user input integers, then output the maximum odd number; if not odd number, output a message
+# takes 10 user input integers, then output the maximum odd number; if no odd number, output a message
 
-# takes 10 integers
-iters = 0
-while iters < 10:
-    list[iters] = int(input("Please input the integer {} out of 10".format(iters)))
-    iters += 1
+i = 0
+max_odd = None
+while i < 10:
+    x = int(input("Please enter an integer "))
+    if x % 2 != 0:
+        if max_odd is None:
+            max_odd = x
+        else:
+            max_odd = max(max_odd, x)
+    i += 1
 
-# store the odd numbers into a new list
-iters = 0
-while iters < 10:
-    n = list[iters]
-    if (n % 2 != 0):
-        list2[iters] = n
-
-# find the maximum odd number
-try:
-    max_odd = max(list2)
-
-# output a message if there is no odd number, otherwise, output the max_odd
-if max_odd is None:
-    print("No odd number among the 10 numbers")
+if max_odd is not None:
+    print(max_odd)
 else:
-    print("{} is the maximum odd number".format{max_odd})
+    print("No odd number")
 
