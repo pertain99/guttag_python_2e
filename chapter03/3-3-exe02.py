@@ -1,5 +1,5 @@
 # enhanced version of square root calculator, can take in fraction number, negative number etc.
-x = -0.001
+x = -1000
 epsilon = 0.00001
 numGuesses = 0
 low = 0.0
