@@ -8,7 +8,7 @@ class Mortgage(object):
     """Abstract class for building different kinds of mortgages"""
     def ___init__(self, loan, annRate, months):
         """Creates a new mortgage of size loan, duration months, and
-        annual rate annRate"""
+           annual rate annRate"""
         self.loan = loan
         self.rate = annRate / 12
         self.months = months
@@ -16,17 +16,14 @@ class Mortgage(object):
         self.outstanding = [loan]
         self.payment = findPayment(loan, self.rate, months)
         self.legend = None #description of mortgage
-
     def makePayment(self):
         """Make a payment, will update both self.paid and self.outstanding"""
         self.paid.append(self.payment)
         reduction = self.payment - self.outstanding[-1]*self.rate
         self.outstanding.append(self.outstanding[-1] - reduction)
-
     def getTotalPaid(self):
         """Return the total amount paid so far"""
         return sum(self.paid)
-
     def __str__(self):
         return self.legend
 
@@ -46,7 +43,7 @@ class TwoRate(Mortgage):
     def __init__(self, loan, r, months, teaserRate, teaserMonths):
         Mortgage.__init__(self, loan, teaserRate, months)
         self.teaserMonths = teaserMonths
-        self.nextRate = r/12
+        self.nextRate = r / 12
         self.legend = str(teaserRate*100) + '% for ' + str(self.teaserMonths) + ' months, then ' + str(round(r*100, 2)) + '%'
     def makePayment(self):
         if len(self.paid) == self.teaserMonths + 1:
@@ -65,7 +62,7 @@ def compareMortgages(amt, years, fixedRate, pts, ptsRate, varRate1, varRate2, va
             mort.makePayment()
     for m in morts:
         print(m)
-        print(' Total payments = $' +str(int(m.getTotalPaid())))
+        print(' Total payments = $' + str(int(m.getTotalPaid())))
 
-compareMortgages(amt=200000, year=30, fixedRate=0.07, pts=3.25, ptsRate=0.05, varRate1=0.045, varRate2=0.095, varMonths=48)
+compareMortgages(amt=200000, years=30, fixedRate=0.07, pts=3.25, ptsRate=0.05, varRate1=0.045, varRate2=0.095, varMonths=48)
 
