@@ -2,11 +2,11 @@ def findPayment(loan, r, m):
     """Assume: loan and r are floats, m an int
        Returns the monthly payment for a mortgage of size
        loan at a monthly rate of r for m months"""
-    return loan*((r*(1+r)**m)/((1+r)**m) - 1)
+    return loan*((r*(1+r)**m)/((1+r)**m - 1))
 
 class Mortgage(object):
     """Abstract class for building different kinds of mortgages"""
-    def ___init__(self, loan, annRate, months):
+    def __init__(self, loan, annRate, months):
         """Creates a new mortgage of size loan, duration months, and
            annual rate annRate"""
         self.loan = loan
@@ -37,7 +37,7 @@ class FixedWithPts(Mortgage):
         Mortgage.__init__(self, loan, r, months)
         self.pts = pts
         self.paid = [loan*(pts/100)]
-        self.legend = 'Fixed, ' + str(round(r*100, 2)) + '%,' + str(pts) + ' points'
+        self.legend = 'Fixed, ' + str(round(r*100, 2)) + '%, ' + str(pts) + ' points'
 
 class TwoRate(Mortgage):
     def __init__(self, loan, r, months, teaserRate, teaserMonths):
